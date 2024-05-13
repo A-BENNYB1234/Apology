@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forgiveness Page</title>
+  <style>
+    /* Existing styles */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
+    }
+    #videoPlayer {
+      display: none;
+    }
+    #popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      z-index: 9999;
+    }
+    #forgivenessPopup {
+      display: none;
+    }
+    #forgivenessGif {
+      display: none;
+    }
+    .button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* New styles for bubbles */
+    .bubble {
+      position: absolute;
+      background-color: #FFC0CB; /* Pink */
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      animation: floatBubble 5s ease-in-out infinite;
+    }
+
+    @keyframes floatBubble {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>My Humble self is here to let go of his Pride</h1>
+  
+  <!-- Video Player -->
+  <div id="videoPlayer">
+    <video id="forgivenVideo" controls autoplay onended="checkAndShowPopup()">
+      <source src="" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <!-- Pop-up Message -->
+  <div id="popup">
+    <p>"You know sey I no get pride, can i go on my knees, so i can be forgiven by you my queen?"</p>
+    <button class="button" onclick="forgive(true)">Yes</button>
+    <button class="button" onclick="forgive(false)">No</button>
+  </div>
+
+  <!-- Forgiveness Confirmation Pop-up -->
+  <div id="forgivenessPopup">
+    <p>"Am i forgiven?"</p>
+    <button class="button" onclick="showForgivenessGif(true)">Yes</button>
+    <button class="button" onclick="showForgivenessGif(false)">No</button>
+  </div>
+
+  <!-- Forgiveness Gif -->
+  <div id="forgivenessGif">
+    <!-- Insert forgiven gif image here -->
+    <img src="thanks2.gif" alt="Forgiven" width="200">
+  </div>
+
+  <!-- Bubbles -->
+  <div id="bubbles"></div>
+
+  <script>
+    var videos = [
+      "apology.mp4"
+      // Add more video URLs as needed
+    ];
+
+    var forgiven = null; // Variable to track forgiveness choice
+
+    function forgive(choice) {
+      forgiven = choice; // Store the user's choice
+      if (forgiven) {
+        // Choose a random video URL if Yes is selected
+        var randomIndex = Math.floor(Math.random() * videos.length);
+        var randomVideo = videos[randomIndex];
+        // Set the video source
+        var videoPlayer = document.getElementById("forgivenVideo");
+        videoPlayer.src = randomVideo;
+        // Show video player
+        document.getElementById("videoPlayer").style.display = "block";
+      } else {
+        // Play a predetermined video if No is selected
+        var videoPlayer = document.getElementById("forgivenVideo");
+        videoPlayer.src = "apology2.mp4"; // You can change this to the second video URL
+        // Show video player
+        document.getElementById("videoPlayer").style.display = "block";
+      }
+      // Hide initial pop-up
+      document.getElementById("popup").style.display = "none";
+    }
+
+    function checkAndShowPopup() {
+      if (forgiven !== null) {
+        // Show forgiveness confirmation pop-up after the video ends
+        document.getElementById("forgivenessPopup").style.display = "block";
+      }
+    }
+
+    function showForgivenessGif(forgiven) {
+      if (forgiven) {
+        // Show forgiven gif
+        document.getElementById("forgivenessGif").style.display = "block";
+      } else {
+        // Show not forgiven gif
+        document.getElementById("notForgivenGif").style.display = "block";
+      }
+      // Hide forgiveness confirmation pop-up
+      document.getElementById("forgivenessPopup").style.display = "none";
+    }
+
+    // Function to create bubbles
+    function createBubbles() {
+      var bubbleContainer = document.getElementById("bubbles");
+      for (var i = 0; i < 15; i++) {
+        var bubble = document.createElement("div");
+        bubble.className = "bubble";
+        // Set random position
+        bubble.style.top = Math.random() * window.innerHeight + "px";
+        bubble.style.left = Math.random() * window.innerWidth + "px";
+        bubble.addEventListener("click", showMessage);
+        bubbleContainer.appendChild(bubble);
+      }
+    }
+
+    // Function to display random message
+    function showMessage() {
+      var messages = [
+        "Darling, your words cut through me like a gentle breeze, revealing the depths of my heart. 💖",
+        "My love, your happiness means more to me than any ounce of pride. 🌟",
+        "Sweetheart, I'll always choose humility over ego when it comes to us. 🌹",
+        "Every beat of my heart sings a melody of humility for you, my love. 🎶",
+        "My dearest, I'm ready to cast aside any shred of pride for the sake of our love. 💞",
+        "Beloved, in your presence, my ego fades into the background, leaving only love in its wake. 💕",
+        "My darling, I'm like clay in your hands, ready to mold myself with humility for you. 🏵️",
+        "Sweetheart, my pride pales in comparison to the beauty of our love story. 📜",
+        "My love, with you, I am but a humble servant to the grandeur of our affection. 🌠",
+        "Dearest, I offer you not pride, but the tender humility of my soul. 🕊️",
+        "Darling, I'd rather walk barefoot on humility's path than wear the shoes of pride. 👣",
+        "Sweetheart, your love humbles me in the most exquisite way. 🌺",
+        "My beloved, I bow before you with the utmost humility, ready to serve your heart. 🙇‍♂️",
+        "My love, pride stands no chance in the face of our boundless affection. 💓",
+        "Darling, with you, my ego dissipates, leaving only the gentle breeze of humility. 🌀"
+      ];
+      var randomMessage = messages[Math.floor(Math.random() * messages.length)];
+      alert(randomMessage);
+    }
+
+    // Create bubbles when the page loads
+    window.onload = function() {
+      createBubbles();
+      // Show initial pop-up
+      document.getElementById("popup").style.display = "block";
+    };
+  </script>
+</body>
+</html>

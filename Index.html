@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Protected Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
+      overflow: hidden;
+    }
+    .container {
+      margin-top: 100px;
+      position: relative;
+    }
+    h1 {
+      color: #333;
+    }
+    input[type="password"] {
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+    }
+    input[type="submit"] {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+    .bubble {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: #ffc0cb;
+      opacity: 0.6;
+      cursor: pointer;
+      animation: floatBubble 6s infinite;
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s ease-in-out;
+    }
+    .bubble:hover {
+      background-color: #ff69b4;
+    }
+    @keyframes floatBubble {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to the Apology Chamber For Tunmise </h1>
+    <form id="passwordForm">
+      <label for="password">Mind you, this is Password Protected, only The Alagidi and stubborn Tunmise is worthy:</label><br>
+      <input type="password" id="password" name="password" required><br><br>
+      <input type="submit" value="Submit">
+    </form>
+    <div id="welcomeMessage" class="welcome-message"></div>
+  </div>
+
+  <script>
+    // Array of romantic messages
+    var romanticMessages = [
+      "Tunmise, you light up my world like nobody else. 💖",
+      "Every moment with you feels like a dream come true. 🌟",
+      "Tunmise, you're the melody to my heart's song. 🎵",
+      "Just thinking about you makes my day brighter. ☀️",
+      "Tunmise, you're my favorite kind of adventure. 🌍",
+      "With you, every day feels like Valentine's Day. 💝",
+      "You're not just my girlfriend, you're my best friend. 👭",
+      "Tunmise, you've stolen more than just my heart. 💘",
+      "I fall for you more and more every single day. 🍂",
+      "Being with you feels like coming home. 🏡",
+      "Tunmise, you're the missing piece to my puzzle. 🧩",
+      "In your arms, I've found my safe haven. 🛡️",
+      "My love for you grows stronger with every heartbeat. 💓",
+      "You're the sunshine in my darkest days. 🌈",
+      "Tunmise, I'm grateful for every moment I get to spend with you. 🙏"
+    ];
+
+    // Function to display random romantic message
+    function displayRandomMessage() {
+      // Get a random message from the array
+      var randomIndex = Math.floor(Math.random() * romanticMessages.length);
+      var randomMessage = romanticMessages[randomIndex];
+      // Display the message
+      alert(randomMessage);
+    }
+
+    // Add bubbles to the page
+    for (var i = 0; i < 15; i++) {
+      var bubble = document.createElement("div");
+      bubble.className = "bubble";
+      bubble.style.top = Math.random() * 90 + "%";
+      bubble.style.left = Math.random() * 90 + "%";
+      bubble.onclick = displayRandomMessage;
+      document.body.appendChild(bubble);
+    }
+
+    // Check password when form is submitted
+    document.getElementById("passwordForm").onsubmit = function(event) {
+      event.preventDefault();
+      var password = document.getElementById("password").value;
+      if (password === "You that can’t beg, No be pride be that?") {
+        // Redirect to the video page after displaying welcome message
+        document.getElementById("welcomeMessage").innerHTML = "Welcome, my love! 🥰";
+        document.getElementById("welcomeMessage").style.display = "block";
+        setTimeout(function() {
+          window.location.href = "final page.html";
+        }, 5000);
+      } else {
+        alert ("Incorrect password. Please try again.");
+        // Clear the password field
+        document.getElementById("password").value = "";
+      }
+    };
+  </script>
+</body>
+</html>
+
